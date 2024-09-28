@@ -21,7 +21,7 @@ jobs:
       - name: build and push image
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          IMAGE_NAME: my-image-CI/CD-image
+          IMAGE_NAME: my-image-ci_cd-image
 
         run: |
           docker build -t $DOCKERHUB_USERNAME/$IMAGE_NAME .
