@@ -18,13 +18,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_SECRET }}
-      - name: getting the username
+      - name: build image
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           IMAGE_NAME: my-image-CI/CD-image
 
-      - name: build image
-        run: |
+          run: 
           docker build -t $DOCKERHUB_USERNAME/$IMAGE_NAME .
 
       - name: push image to DockerHub
