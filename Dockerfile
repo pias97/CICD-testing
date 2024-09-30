@@ -1,6 +1,6 @@
 FROM python:3.10-slim
 
-EXPOSE 8080
+EXPOSE 3456
 
 # Install pip requirements
 COPY requirements.txt .
