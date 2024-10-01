@@ -30,10 +30,9 @@ jobs:
 
         - name: Run container
           run: |
-            docker run -d \
-            --name $DOCKERHUB_USERNAME/$IMAGE_NAME:latest \
-            -p 3456:3456 \
-        
+            docker run -d -p 3456:3456 --name my-container $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
+            
+            
         - name: Download and Install ngrok
           run: |
             curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc > /dev/null &&
