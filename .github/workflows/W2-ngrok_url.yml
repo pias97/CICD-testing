@@ -60,9 +60,9 @@ jobs:
 
 #only active this module when need to see the ngrok endpoint
 
-"""
-        - name: Keep the container running (optional)
-              run: sleep infinity
-"""
+
+#        - name: Keep the container running (optional)
+#             run: sleep infinity
+
 
 
