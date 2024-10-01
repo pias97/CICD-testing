@@ -56,6 +56,4 @@ jobs:
         - name: Display ngrok URL
           run: echo "The Link is available at ${{ env.NGROK_URL }}"
   
-        - name: Keep the container running (optional)
-          run: sleep infinity
-
+     
