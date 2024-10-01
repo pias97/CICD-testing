@@ -1,0 +1,91 @@
+name: Deploy Webmap with Ngrok
+
+on:
+    push:
+      branches: [ main ]
+    pull_request:
+      types: [opened, reopened]
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+
+        - name: Login to DockerHub
+          uses: docker/login-action@v1
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_SECRET }}
+
+        - name: Pull  Docker image
+          env:
+            DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+            IMAGE_NAME: my-ci_cd-image
+          run: $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
+
+        - name: Run container
+          run: |
+            docker run -d \
+            --name $IMAGE_NAME \
+            -p 3456:3456 \
+        
+        - name: Download and Install ngrok
+          run: |
+            curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc > /dev/null &&
+            echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list &&
+            sudo apt-get update && sudo apt-get install ngrok    
+
+        - name: Run ngrok to expose port 3456
+          run: |
+            ngrok authtoken ${{ secrets.NGROK_AUTHTOKEN }}
+            nohup ngrok http 3456 > ngrok.log &
+          id: ngrok
+
+
+        - name: Extract ngrok URL
+          run: |
+            NGROK_URL=$(grep -o 'https://[a-z0-9]*\.ngrok\.io' ngrok.log | head -n 1)
+            echo "Ngrok URL: $NGROK_URL"
+            echo "NGROK_URL=$NGROK_URL" >> $GITHUB_ENV
+          id: extract-ngrok-url
+  
+        - name: Display ngrok URL
+          run: echo "The Webmap is available at ${{ env.NGROK_URL }}"
+  
+        - name: Keep the container running (optional)
+          run: sleep infinity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+
+
+    - uses: luisboto/ngrok-tunnel-action@<VERSION>
+      with:
+        timeout: 1h
+        port: 8080
+        ngrok_authtoken: ${{ secrets.NGROK_AUTHTOKEN }}
+        tunnel_type: http
+        save_url_to_filename: tunnelURL.md
+
+'''
