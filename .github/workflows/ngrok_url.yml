@@ -25,7 +25,8 @@ jobs:
           env:
             DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
             IMAGE_NAME: ci_cd_image
-          run: $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
+          run: docker pull $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
+            
 
         - name: Run container
           run: |
