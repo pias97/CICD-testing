@@ -60,5 +60,3 @@ jobs:
         - name: Keep the container running (optional)
           run: sleep infinity
 
-
-s
