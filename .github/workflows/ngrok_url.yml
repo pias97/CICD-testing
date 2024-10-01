@@ -30,7 +30,7 @@ jobs:
 
         - name: Run container
           run: |
-            docker run -d -p 3456:3456 --name $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
+            docker run -d -p 3456:3456 --name ci_cd_image $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
             
 
         - name: Download and Install ngrok
