@@ -1,6 +1,6 @@
 # CICD-DEMO
 A simple `flask` based project is used to automate a beginer level CI/CD pipeline. 
-Currenlty there are two workflows in this repo and they will be triggered if the repository receives any push or pull request. 
+Currenlty there are two workflows in this repo and they will be triggered if the repository receives any push or pull request. Workflow dependeny has also been added. 
 
 ## Overview
 
