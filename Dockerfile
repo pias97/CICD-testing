@@ -12,5 +12,3 @@ COPY . /app
 #ENTRYPOINT ["python"]
 CMD ["python", "app.py"]
 
-
-##hehehehe
