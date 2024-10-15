@@ -1,12 +1,12 @@
 name: Deploying with AWS
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["CI/CD Pipeline Test with test.py and build_push"]  # Name of the previous workflow
     types:
       - completed      
-
-
+  
 env:
   PRIVATE_KEY: ${{ secrets.RSA_KEY_FOR_APP_EC2 }}
   INSTANCE_IP: ${{ vars.INSTANCE_IP }}
