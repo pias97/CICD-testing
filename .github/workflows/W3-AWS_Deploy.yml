@@ -1,7 +1,6 @@
 name: Deploying with AWS
 
 on:
-  workflow_dispatch:
   workflow_run:
     workflows: ["CI/CD Pipeline Test with test.py and build_push"]  # Name of the previous workflow
     types:
