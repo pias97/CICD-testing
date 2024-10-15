@@ -27,7 +27,7 @@ jobs:
           uses: appleboy/ssh-action@master
           with:
             host: ${{ env.INSTANCE_IP }}
-            username: ubuntu
+            username: ec2-user
             key: ${{ secrets.RSA_KEY_FOR_APP_EC2 }}
             script: |
              run: docker pull $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
