@@ -9,8 +9,7 @@ on:
 env:
   PRIVATE_KEY: ${{ secrets.RSA_KEY_FOR_APP_EC2 }}
   INSTANCE_IP: ${{ vars.INSTANCE_IP }}
-  DOCKERHUB_USERNAME: pias97  
-  IMAGE_NAME: ci_cd_image    
+  IMAGE_NAME: ci_cd_image
 
 jobs:
   deploy:
@@ -31,7 +30,7 @@ jobs:
              sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:latest
              sudo docker stop ci_cd_image || true
              sudo docker rm ci_cd_image || true
-             sudo docker run -d -p 3456:3456 --name ci_cd_image ${{ secrets.DOCKERHUB_USERNAME }}/ci_cd_image:latest
+             sudo docker run -d -p 3456:3456 --name ci_cd_image ${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:latest
              
 
 
