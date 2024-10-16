@@ -32,8 +32,8 @@ jobs:
              sudo docker pull $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
              sudo docker stop ci_cd_image || true
              sudo docker rm ci_cd_image || true
-             sudo docker run -d -p 3456:3456 --name ci_cd_image pias97/ci_cd_image:latest
-             sudo docker image prune -f
+             sudo docker run -d -p 3456:3456 --name ci_cd_image $DOCKERHUB_USERNAME/ci_cd_image:latest
+             
 
 
       
