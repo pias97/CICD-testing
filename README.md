@@ -1,11 +1,11 @@
-# CICD-DEMO
+# CICD Testing using Github Action
 A simple `flask` based project is used to automate a beginer level CI/CD pipeline. 
-Currenlty the workflow has been designed to . 
+Currenlty the workflow has been designed to trigger a build and push pipeline for any committed code and deploy it to an AWS ec2 instance.
 
 ## Overview
 
-This CI/CD pipeline is designed to automate the testing and deployment process for your project. It consists of two primary jobs:
+This CI/CD pipeline is designed to automate the testing and deployment process for your project. It consists of two primary parts:
 
-- Test Job: This `test_job.yml` file runs test to ensure that project output is always `Hello World`, anything not similar to that will be considered as a fail test.
+- Build and Push: This `W2-test_job and build_push.yml` file runs test to ensure that project output is always matches the `test.py`, anything not similar to that will be considered as a fail test and the pipeline won't run further. If the test completes, then it will push an docker image to the registry.
 
-- Build/Push Job: This `build_push_job.yml` builds the image and pushes it to Docker Hub.
+- Deploy: This job, `W3-AWS_Deploy.yml` only runs triggers when the `W2-test_job and build_push.yml` job completes.
