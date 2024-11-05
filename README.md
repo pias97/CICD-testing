@@ -1,28 +1,42 @@
 # CICD Testing using Github Action
-A simple `flask` based project is used to automate a beginer level CI/CD pipeline. 
-Currenlty the workflow has been designed to trigger a build and push pipeline for any committed code and deploy it to an AWS ec2 instance.
+A simple 1 tier `flask` app is used to automate a beginer level CI/CD pipeline using Github Actions. 
+Currenlty the workflow has been designed to trigger a build and push pipeline for any committed code and deploy it to an AWS EC2 instance.
 
 # Overview
-
-### CI and CD pipeline:
 This pipeline is designed to automate the testing and deployment process for your project. It consists of two primary parts:
 
-- Build and Push: This `W2-test_job and build_push.yml` file runs test to ensure that project output is always matches the `test.py`, anything not similar to that will be considered as a fail test and the pipeline won't run further. If the test completes, then it will push an docker image to the registry.
+### CI pipeline:
+- **Quality Check**: `sonar.yml` and `W1-linter.yml` files ensures that the code coverage and code quality is well maintained.
 
-- Deploy: This job, `W3-AWS_Deploy.yml` only runs triggers when the `W2-test_job and build_push.yml` job completes.
+- **Build and Push**: This `W2-test_job and build_push.yml` file runs test to ensure that project output is always matches the `test.py`, anything not similar to that will be considered as a fail test and the pipeline won't run further. If the test completes, then it will push an docker image to the registry.
 
-### Terraform and Automation:
- - Terraform template
-    - `ec2` module to create EC2 instance/s on AWS
- - Automation
-    - `docker.sh` script to install docker
-    - `terraform.sh` script to install terraform  
 
+
+### CD pipeline:
+- **Deploy**: This job, `W3-AWS_Deploy.yml` only runs triggers when the `W2-test_job and build_push.yml` job completes.
 
 ## Tech stack used in this project:
-- GitHub (Code)
 - Github Actions (CI-CD)
 - Docker (Containerization)
 - SonarQube (Code Quality)
 - Terraform (IAC)
 - AWS EC2 (Deployment)
+
+
+
+## Running on Local machine
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/pias97/python_app_deployment_CICD.git
+    ```
+2. **Navigate to the project directory**:
+    ```bash
+    cd python_app_deployment_CICD
+    ```
+3. **Configure necessary secrets and vars for Dockerhub, Sonarqube and AWS instance**
+4. **Install Docker by using shell file from Automation directory**
+5. **Build Docker image**
+   ```bash
+   
+   ```
